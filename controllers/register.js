@@ -20,16 +20,16 @@ export const signUp = async (req, res) => {
     const passwordHash = await argon2.hash(password);
     
     // Save the new user with the hashed password
-    const newUser = new registerModel({
+    const newUser = new registerModel.create({
       name,
       email,
       password: passwordHash,  // Store hashed password
       phoneno,
     });
-
-    await newUser.save();
-
-    res.status(201).json({ msg: "User created successfully" });
+    res.status(201).send({
+      message: "User registered successfully",
+      user: newUser,
+    });
   } catch (err) {
     console.error("Error during sign up:", err);
     res.status(500).json({ error: err.message });
@@ -38,11 +38,11 @@ export const signUp = async (req, res) => {
 
 export const getAll= async (req, res) => {
   try {
-    const recipes = await registerModel.find({});
+    const user = await registerModel.find({});
     res.status(200).send({
       success: true,
       message: "All  retrieved successfully",
-      recipes,
+      user,
     });
   } catch (error) {
     console.error("Error retrieving register:", error);
