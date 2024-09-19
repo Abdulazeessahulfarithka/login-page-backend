@@ -1,5 +1,5 @@
 import registerModel from "../model/registerModel.js";
-import bcrypt from "bcrypt";
+import argon2 from "argon2";
 import JWT from "jsonwebtoken";
 
 export const signIn = async (req, res) => {
@@ -10,10 +10,8 @@ export const signIn = async (req, res) => {
     const user = await registerModel.findOne({ email });
     if (!user) return res.status(400).json({ msg: "Invalid credentials." });
 
-   
-
-    // Compare the password
-    const isMatch = await bcrypt.compare(password, user.password);
+    // Compare the password with argon2
+    const isMatch = await argon2.verify(user.password, password);
     console.log("Password match result:", isMatch);  // Log comparison result
 
     if (!isMatch) return res.status(400).json({ msg: "Invalid credentials." });

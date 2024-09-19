@@ -1,5 +1,5 @@
 import registerModel from "../model/registerModel.js";
-import bcrypt from "bcrypt";
+import argon2 from "argon2";
 
 export const signUp = async (req, res) => {
   try {
@@ -16,12 +16,9 @@ export const signUp = async (req, res) => {
       return res.status(400).json({ msg: "User already exists" });
     }
 
-    // Hash the password
-    const salt = await bcrypt.genSalt(10);
-    const passwordHash = await bcrypt.hash(password, salt);
+    // Hash the password with argon2
+    const passwordHash = await argon2.hash(password);
     
-    
-
     // Save the new user with the hashed password
     const newUser = new registerModel({
       name,
