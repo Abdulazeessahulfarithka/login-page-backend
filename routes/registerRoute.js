@@ -3,6 +3,6 @@ import { signUp ,getAll} from "../controllers/register.js"
 const router=express.Router()
 
 router.post("/register",signUp)
-router.post("/alluser",getAll)
+router.get("/alluser",getAll)
 
 export default router
