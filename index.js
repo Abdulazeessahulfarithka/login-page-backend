@@ -9,11 +9,12 @@ const allowedOrigins = ['http://localhost:3000',];
 
 
 dotenv.config()
+// Database connection
+db();
 
 const app =express()
 
-// Database connection
-db();
+
 
 //port
 const PORT = process.env.PORT

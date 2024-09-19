@@ -20,16 +20,16 @@ export const signUp = async (req, res) => {
     const passwordHash = await argon2.hash(password);
     
     // Save the new user with the hashed password
-    const newUser = new registerModel.create({
+    const newUser = new registerModel({
       name,
       email,
       password: passwordHash,  // Store hashed password
       phoneno,
     });
-    res.status(201).send({
-      message: "User registered successfully",
-      user: newUser,
-    });
+
+    await newUser.save();
+
+    res.status(201).json({ msg: "User created successfully" });
   } catch (err) {
     console.error("Error during sign up:", err);
     res.status(500).json({ error: err.message });
