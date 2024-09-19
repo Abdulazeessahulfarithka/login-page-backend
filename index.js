@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 });
 
 // Register route
-app.post("/api/signup", signUp); // Changed to POST
+app.post("/api/user", signUp); // Changed to POST
 // SignIn route
 app.post("/api/signin", signIn); // Changed to POST
 
