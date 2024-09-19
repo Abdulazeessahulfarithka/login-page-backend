@@ -35,3 +35,21 @@ export const signUp = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+export const getAll= async (req, res) => {
+  try {
+    const recipes = await registerModel.find({});
+    res.status(200).send({
+      success: true,
+      message: "All  retrieved successfully",
+      recipes,
+    });
+  } catch (error) {
+    console.error("Error retrieving register:", error);
+    res.status(500).send({
+      success: false,
+      message: "Error retrieving register",
+      error,
+    });
+  }
+};
