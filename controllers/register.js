@@ -36,20 +36,12 @@ export const signUp = async (req, res) => {
   }
 };
 
-export const getAll= async (req, res) => {
+export const getAll = async (req, res) => {
   try {
-    const user = await registerModel.find({});
-    res.status(200).send({
-      success: true,
-      message: "All  retrieved successfully",
-      user,
-    });
+    const users = await User.find(); // Get all users from the database
+    return res.status(200).json({ success: true, data: users });
   } catch (error) {
-    console.error("Error retrieving register:", error);
-    res.status(500).send({
-      success: false,
-      message: "Error retrieving register",
-      error,
-    });
+    console.error('Error fetching users:', error.message);
+    return res.status(500).json({ success: false, message: 'Server error', error: error.message });
   }
 };

@@ -2,8 +2,8 @@ import express from "express";
 import * as dotenv from 'dotenv';
 import cors from 'cors';
 import db from "./Config/db.js"
-import { signUp } from "./controllers/register.js";
-import { signIn } from "./controllers/login.js";
+import registerRoute from "./model/registerModel.js"
+import loginRoute from "./model/loginModel.js"
 const allowedOrigins = ['http://localhost:3000',];
 
 
@@ -34,8 +34,8 @@ app.get('/', (req, res) => {
 });
 
 //routes
-app.use("/api/user",signUp)
-app.use("/api/signin",signIn)
+app.use("/api/user",registerRoute)
+app.use("/api/signin",loginRoute)
 app.use(cors({
 
 }))
