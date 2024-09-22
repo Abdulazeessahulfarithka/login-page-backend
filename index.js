@@ -4,7 +4,7 @@ import cors from 'cors';
 import db from "./Config/db.js"
 import registerRoute from "./routes/registerRoute.js"
 import loginRoute from "./routes/loginRoute.js"
-const allowedOrigins = ['http://localhost:3000',];
+const allowedOrigins = ['http://localhost:3000', 'https://magnificent-maamoul-1ebb5a.netlify.app/'];
 
 
 
