@@ -13,6 +13,7 @@ export const signIn = async (req, res) => {
 
     // Find the user by email (use findOne to get a single document)
     const user = await registerModel.findOne({ email: req.body.email });
+    
 if (!user) {
   return res.status(404).send("User not found");
 }

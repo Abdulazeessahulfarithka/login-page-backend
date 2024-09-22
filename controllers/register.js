@@ -4,7 +4,7 @@ import argon2 from "argon2";
 export const signUp = async (req, res) => {
   try {
     const { name, email, password, phoneno } = req.body;
-
+    console.log(name,email,password)
     // Validate required fields
     if (!name || !email || !password || !phoneno) {
       return res.status(400).json({ msg: "All fields are required" });
