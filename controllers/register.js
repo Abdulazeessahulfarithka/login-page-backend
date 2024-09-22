@@ -38,7 +38,8 @@ export const signUp = async (req, res) => {
 
 export const getAll = async (req, res) => {
   try {
-    const users = await User.find(); // Get all users from the database
+    const users = await registerModel.find(); 
+    console.log(users)
     return res.status(200).json({ success: true, data: users });
   } catch (error) {
     console.error('Error fetching users:', error.message);
